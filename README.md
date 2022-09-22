@@ -1,4 +1,5 @@
 
+
 # pwsh-utils
 
 Useful Powershell Utils
@@ -26,19 +27,21 @@ Useful Powershell Utils
     Set-Alias  -Name "rmtemp" -Value "DeleteTempFiles"
     Set-Alias  -Name "e"      -Value "OpenExplorerAtCurrentDirectory"
     
-<sup>Note: You Can Use Functions Without `alias` But Its Just Convinient To Do So.</sup>
+<sup>Note: You Can Use Functions Without `alias` But Its Just Convinient To Do So</sup>
 
 # Usage
 
 `mktemp`
 
-> Creates A Directory In Temporary Directory And Moves Into It.
+> Creates A Directory In Temporary Directory And Moves Into It
+> *Folder Name: tmp-{random 15 characters}*
 
 `mkfile`
 
-> Creates A File In Temporary Directory And Moves Into Directory.
-> **With Second Argument** It Will Create File With Given Argument As Extension.
-> **Without Second Argument** It Will Create File With No Extension.
+> Creates A File In Temporary Directory **And Opens It Using VSCode**
+> **With Second Argument** It Will Create File With Given Argument As Extension
+> **Without Second Argument** It Will Create File With No Extension
+> *File Name: tmpFile-{random 15 characters}*
 
 `rmtemp`
 
