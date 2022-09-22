@@ -34,22 +34,29 @@ Useful Powershell Utils
 `mktemp`
 
 > Creates A Directory In Temporary Directory And Moves Into It
+> 
 > *Folder Name: tmp-{random 15 characters}*
 
 `mkfile`
 
 > Creates A File In Temporary Directory **And Opens It Using VSCode**
+> 
 > **With Second Argument** It Will Create File With Given Argument As Extension
+> 
 > **Without Second Argument** It Will Create File With No Extension
+> 
 > *File Name: tmpFile-{random 15 characters}*
 
 `rmtemp`
 
 > Deletes Temporary Directory Files/Folders Which Aren't In Use.
+> 
 > ***If Files Are Left In Directory It Means Some Proccess Is Using It***
 
 `e`
 
 > Shorthand For `explorer` 
+> 
 > **With Second Argument** It Will Open Exporer In Given Argument As Path
+> 
 > **Without Second Argument** It Will Open Explorer In Current Directory
