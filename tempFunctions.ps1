@@ -1,33 +1,37 @@
-function New-TemporaryDirectory {
-    $randString = (-join ((65..90) + (97..122) | Get-Random -Count 15 | % {[char]$_}))
-    $randName = "tmp-$randString"
-    $tmpLocation = "$temp\$randName"
+function Delete-Temporary { Remove-Item -Path $temp\* -Recurse -Force -ErrorAction SilentlyContinue }
+
+function New-Temporary {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory=$false)] [switch]$Directory,
+        [Parameter(Mandatory=$false)] [switch]$File,
+        [Parameter(Mandatory=$false)] [string]$Extension,
+        [Parameter(Mandatory=$false)] [switch]$Code
+    )
+    $randString = (-join ((65..90) + (97..122) | Get-Random -Count 15 | % {[char]$_}));
     
-    # Create New Directory 
-    New-Item -ItemType Directory -Path "$tmpLocation" | Out-Null
+    if ($File) {
+        # Random File Name
+        $tmpLocation = "$temp\tmpFile-$randString";
+
+        # Add Extension If Any
+        if ($Extension -ne "") { $tmpLocation += ".$Extension"; }
+        # Create New File
+        New-Item -ItemType File -Path "$tmpLocation" | Out-Null;
+    } else {
+        # Random Directory Name
+        $tmpLocation = "$temp\tmp-$randString";
     
-    # Change Location To New Directory
-    Set-Location $tmpLocation 
+        # Create New Directory 
+        New-Item -ItemType Directory -Path "$tmpLocation" | Out-Null;
+        
+        # Change Location To New Directory
+        Set-Location $tmpLocation;
+    }
+    
+    # Open With Code        
+    if ($Code) { code $tmpLocation; }
 
     # Format Output
-    Write-Output "`n$tmpLocation`n"
+    Write-Output "`n$tmpLocation`n";
 } 
-
-function New-CustomTemporaryFile {
-    $randString = (-join ((65..90) + (97..122) | Get-Random -Count 15 | % {[char]$_}))
-    $randName = "tmpFile-$randString"
-
-    if ($args[0]) { $tmpLocation = "$temp\$randName." + $args[0] } 
-    else          { $tmpLocation = "$temp\$randName"             }
-
-    # Create New Directory 
-    New-Item -ItemType File -Path "$tmpLocation" | Out-Null
-    
-    # Change Location To New Directory
-    code $tmpLocation 
-
-    # Format Output
-    Write-Output "`n$tmpLocation`n"
-} 
-
-function DeleteTempFiles { Remove-Item -Path $temp\* -Recurse -Force -ErrorAction SilentlyContinue }
