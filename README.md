@@ -35,7 +35,7 @@ Useful Powershell Utils
 
 > Creates A File In Temporary Directory
 > 
-> -Extension: Will Create File With Given Extension, Defaults To None
+> -Extension: Will Create File With Given Extension, Defaults To None<br>
 > -Code: Will Open File In VSCode After Creation, Defaults To False
 > 
 > *File Name: tmpFile-{random 15 characters}*
